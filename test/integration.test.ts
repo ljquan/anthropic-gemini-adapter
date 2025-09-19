@@ -66,7 +66,7 @@ describe('Integration Tests', () => {
     
     expect(response.status).toBe(200);
     
-    const responseData = await response.json();
+    const responseData = await response.json() as any;
     expect(responseData.type).toBe('message');
     expect(responseData.role).toBe('assistant');
     expect(responseData.content).toHaveLength(1);
@@ -171,7 +171,7 @@ describe('Integration Tests', () => {
     
     expect(response.status).toBe(200);
     
-    const responseData = await response.json();
+    const responseData = await response.json() as any;
     expect(responseData.type).toBe('message');
     expect(responseData.role).toBe('assistant');
     expect(responseData.content).toHaveLength(1);
@@ -278,7 +278,7 @@ describe('Integration Tests', () => {
     
     expect(response.status).toBe(502);
     
-    const responseData = await response.json();
+    const responseData = await response.json() as any;
     expect(responseData.type).toBe('error');
     expect(responseData.error.type).toBe('api_error');
     expect(responseData.error.message).toContain('Gemini API error: 400');
@@ -301,7 +301,7 @@ describe('Integration Tests', () => {
     
     expect(response.status).toBe(400);
     
-    const responseData = await response.json();
+    const responseData = await response.json() as any;
     expect(responseData.type).toBe('error');
     expect(responseData.error.type).toBe('invalid_request_error');
     expect(responseData.error.message).toBe('Invalid JSON in request body');

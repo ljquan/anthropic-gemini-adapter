@@ -6,6 +6,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     coverage: {
+      provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
       exclude: [
         'node_modules/',
@@ -13,7 +14,8 @@ export default defineConfig({
         'dist/',
         '**/*.d.ts',
         'vitest.config.ts',
-        'eslint.config.js'
+        '.eslintrc.js',
+        'worker.js' // exclude legacy file
       ]
     },
     setupFiles: ['./test/setup.ts']
@@ -22,5 +24,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  esbuild: {
+    target: 'node14'
   }
 });

@@ -91,8 +91,9 @@ Object.assign(global, {
       return super.get(name.toLowerCase()) || null;
     }
 
-    set(name: string, value: string): void {
+    set(name: string, value: string): this {
       super.set(name.toLowerCase(), value);
+      return this;
     }
 
     has(name: string): boolean {
@@ -144,7 +145,10 @@ Object.assign(global, {
   TextDecoder: class MockTextDecoder {
     decode(input?: BufferSource, options?: { stream?: boolean }) {
       if (!input) return '';
-      return Buffer.from(input).toString('utf8');
+      if (input instanceof ArrayBuffer) {
+        return Buffer.from(new Uint8Array(input)).toString('utf8');
+      }
+      return Buffer.from(input as Uint8Array).toString('utf8');
     }
   }
 });

@@ -612,7 +612,7 @@ describe('Integration Tests', () => {
       })
     });
     
-    const response = await worker.fetch(request, {}, {} as ExecutionContext);
+    const response = await worker.fetch(request, { GEMINI_API_KEY: '' }, {} as ExecutionContext);
     
     expect(response.status).toBe(500);
   });
